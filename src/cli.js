@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import fs from 'fs'
-import { iterativeSolver } from '../dist/index.js'
+import { iterativeSolver } from './index.ts'
 
 const args = process.argv.slice(2)
 
@@ -17,7 +17,7 @@ let iter = parseInt(args[1]) || 50
 
 let totalIterations = 0
 
-while (true) {
+async function iteration() {
 	const timeStart = Date.now()
 	const solved = solver(iter)
 	const deltaT = Date.now() - timeStart
@@ -28,7 +28,7 @@ while (true) {
 	console.log(`Tried ${solved.iterations} iterations, found ${solved.solutions.length} solution(s) in ${deltaT}ms:`)
 	if (solved.done) {
 		console.log('All possible solutions have been found.')
-		break
+		return true
 	}
 	totalIterations += solved.iterations
 	console.log(`Maximum iterations reached, more solutions may exist. Current stack ${solved.optionStack.length} items. Total iterations: ${totalIterations}`)
@@ -37,9 +37,18 @@ while (true) {
 		process.stdin.once('data', data => resolve(data.toString().trim()))
 	})
 	if (input.toLowerCase() === 'q') {
-		break
+		return true
 	}
 	iter = parseInt(input) || iter
+	return false
 }
 
-process.exit(0)
+async function run() {
+	while (true) {
+		if (await iteration()) break
+	}
+	process.exit(0)
+}
+
+run()
+

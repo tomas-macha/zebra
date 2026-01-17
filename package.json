@@ -1,6 +1,6 @@
 {
 	"name": "zebra-solver",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "A constraint solver for Zebra puzzles.",
 	"type": "module",
 	"sideEffects": false,
@@ -34,7 +34,7 @@
 		}
 	},
 	"bin": {
-		"zebra-solver": "./src/cli.js"
+		"zebra-solver": "./dist/cli.js"
 	},
 	"files": [
 		"dist"
