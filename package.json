@@ -1,0 +1,47 @@
+{
+	"name": "zebra-solver",
+	"version": "0.1.0",
+	"description": "A constraint solver for Zebra puzzles.",
+	"type": "module",
+	"sideEffects": false,
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"keywords": [
+		"zebra puzzle",
+		"constraint solver",
+		"typescript",
+		"logic puzzle",
+		"Einstein riddle"
+	],
+	"author": "Tomáš Mácha",
+	"license": "MIT",
+	"homepage": "https://github.com/tomas-macha/zebra",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tomas-macha/zebra.git"
+	},
+	"packageManager": "pnpm@10.13.1",
+	"devDependencies": {
+		"tsup": "^8.5.1",
+		"typescript": "^5.9.3"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs"
+		}
+	},
+	"bin": {
+		"zebra-solver": "./src/cli.js"
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsup",
+		"dev": "tsup --watch"
+	}
+}
+
